@@ -140,6 +140,8 @@ function () {
     Object.assign(this.data, update);
   };
 
+  User.prototype.on = function () {};
+
   return User;
 }();
 
