@@ -2,11 +2,11 @@ import axios, { AxiosPromise } from 'axios';
 
 // Constraint to force whatever comes in as <T> must have an ID prop
 interface HasId {
-    id: number;
+    id?: number;
 }
 
 // extending HasId to force <T> to have ID constraint
-export class Sync<T extends HasId> {
+export class ApiSync<T extends HasId> {
     constructor(public rootUrl: string) {};
 
     fetch(id: number): AxiosPromise {
@@ -14,7 +14,7 @@ export class Sync<T extends HasId> {
     }
 
     save(data: T): AxiosPromise {
-        const id =  data.id;
+        const { id } =  data;
 
         if (id) {
             return axios.put(`${this.rootUrl}/${id}`, data);
